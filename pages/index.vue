@@ -3,8 +3,8 @@
     <div class="welcome w-full">
       <div class="hero w-full flex justify-center items-center py-10 p-3 md:p-10 absolute top-0 left-0 right-0">
       <span class="bg-hero"/>
-        <div class="absolute top-0 md:bottom-0 -bottom-4 md:pb-4 w-full flex justify-center items-end px-0" style="">
-          <div class="w-auto rounded-none  bg-white">
+        <div class="absolute top-0 md:bottom-0 -bottom-4 md:pb-20 w-full flex justify-center items-end px-0" style="">
+          <div class="w-auto rounded  bg-white">
             <div class="w-auto py-10 px-24 flex flex-col md:flex-row items-center gap-3">
               <!--            <Icon color="black" class=" -ml-24"/>-->
               <span class="p-2 flex flex-col justify-between">
@@ -74,7 +74,7 @@
         }
       }" class="w-full ml-auto mt-48 relative overflow-x-hidden" :loadtheme="false">
       <div class="highlights swiper-wrapper flex testimonials p-5 cursor-move">
-        <div class="swiper-slide lg:rounded p-10 w-screen md:w-1/4" v-for="highlight in highlights"
+        <div class="swiper-slide lg:rounded p-14 w-screen md:w-1/4" v-for="highlight in highlights"
              :style="`background-image: url(${highlight.photo})`">
         <span>
           <h3
@@ -84,17 +84,49 @@
       </div>
     </div>
     <div class="flex flex-col justify-center items-center">
-      <h2 class="text-center pb-4">Features</h2>
-      <p class="text-center w-96">Here are our villa's highlights. Click on each one to learn more or view more pictures.</p>
+      <h2 class="text-center py-10">Features</h2>
+      <p class="text-center mb-10">Here are our villa's highlights. Click on each one to learn more or view more pictures.</p>
       <div class="grid grid-cols-2 md:grid-cols-3 gap-3 p-3">
         <div v-for="feature in features">
           <BIcon icon="check"></BIcon> {{feature}}
         </div>
       </div>
     </div>
+    <div class="flex gap-3 pt-10 w-full justify-center">
+      <div v-swiper="{
+      loop:true,
+      slidesPerView: 4,
+              breakpoints: {
+          1024: {
+          slidesPerView: 4,
+          spaceBetween: 10
+          },
+          768: {
+          slidesPerView: 2,
+          spaceBetween: 0
+          },
+          640: {
+          slidesPerView: 1,
+          spaceBetween: 10
+          },
+          320: {
+          slidesPerView: 1,
+          spaceBetween: 10
+          }
+        }
+      }" class="w-full ml-auto mt-48 relative overflow-x-hidden" :loadtheme="false">
+        <div class="swiper-wrapper flex testimonials p-5 cursor-move">
+          <div v-for="pin in pins" class="swiper-slide px-14 border border-black rounded py-7 gap-3">
+            {{pin.title}}
+          </div>
+        </div>
+      </div>
+    </div>
     <GMap
       ref="gMap"
       language="en"
+      class="mt-16 px-4"
+      :options="{disableDefaultUI: true}"
       :center="{lat: 35.3648132, lng: 24.7652742}"
       :zoom="10"
     >
@@ -211,6 +243,28 @@ export default Vue.extend({
         'Pool',
         'Fully-Equiped Kitchen',
         'Personal Chef (upon request)',
+      ],
+      pins:[
+        {
+          lat:35.368282,
+          lng:24.5005716,
+          title: "Rethymno"
+        },
+        {
+          lat:35.368282,
+          lng:24.5005716,
+          title: "Rethymno"
+        },
+        {
+          lat:35.368282,
+          lng:24.5005716,
+          title: "Rethymno"
+        },
+        {
+          lat:35.368282,
+          lng:24.5005716,
+          title: "Rethymno"
+        },
       ]
     }
   }
